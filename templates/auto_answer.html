@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="info">
+    {% for info in full_form['info'] %}
+    {{info}}: {{full_form['info'][info]}}<br/>
+    {% endfor %}
+</form>
+{% endblock %}

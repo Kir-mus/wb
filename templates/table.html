@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Works log</h2>
+{% for log in jobsid %}
+<h3>Action {{log}}</h3>
+<table width="500" border="5">
+      <tr bgcolor="gray">
+        <th>title</th><th>lid</th><th>dur</th><th>list</th><th>is fin</th>
+      </tr>
+      <tr bgcolor="spas">
+        <td>{{jobsid[log][0]}}</td><td>{{jobsid[log][1]}}</td><td>{{jobsid[log][2]}}</td><td>{{jobsid[log][3]}}</td>{% if jobsid[log][4] == False %} <td>is not fin</td> {% else %} <td>fin</td> {% endif %}
+      </tr>
+    </table></br>{% endfor %}
+{% endblock %}

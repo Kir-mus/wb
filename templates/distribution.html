@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Размещение по каютам</h2>
+{% set N = 'Каюта №' %}
+{% for com in com_list %}
+{{ com }} - {{N}} {{ loop.index }}{% if loop.first %} - капитан коробля {% endif %}<br/>
+{% endfor %}
+{% endblock %}

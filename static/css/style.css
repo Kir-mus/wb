@@ -1,0 +1,40 @@
+form.prof {
+    max-width: 450px;
+    color-text: #b0b7c6;
+    border: 14px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+h4 {
+    margin-left: 20px;
+    color: #b0b7c6;
+}
+form.info{
+    color: #f50029;
+    background-color: #b57281;
+    border: 5px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 600px;
+}
+
+IMG.mars {
+    float: left;
+    padding-bottom: 10px;
+}
+
+form.du_login{
+    max-width: 450px;
+    color-text: #b0b7c6;
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: 2px;
+}
+p.tet, h2{
+    text-align:center
+}
+td.full_g{
+    background-color: gray;
+}
+
+

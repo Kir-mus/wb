@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form class="du_login" action="" method="post" novalidate>
+    <h2><img src="https://yastatic.net/s3/lyceum/content/images/second-year/web/MARS-2-7.png"
+    alt="Иллюстрация" class="mars">  Аварийный доступ</h2>
+    <br/>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.id_1.label }}<br>
+        {{ form.id_1(class="form-control") }}<br>
+        {% for error in form.id_1.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password_1.label }}<br>
+        {{ form.password_1(class="form-control", type="password") }}<br>
+        {% for error in form.password_1.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.id_2.label }}<br>
+        {{ form.id_2(class="form-control") }}<br>
+        {% for error in form.id_2.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password_2.label }}<br>
+        {{ form.password_2(class="form-control", type="password") }}<br>
+        {% for error in form.password_2.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}

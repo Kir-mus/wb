@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="prof" method="post">
+    <h2>Список профессий</h2>
+    {% for prof in prof_list %}
+        {% if num == 'ul' %} <li>{{ prof }}</li> {% elif num == 'ol' %} <li>{{ loop.index }} - {{ prof }} </li> {% else %} <div class="alert alert-danger" role="alert">Неправельный параметр list_prof/< num ></div> {% endif %}
+    {% endfor %}
+</form>
+{% endblock %}

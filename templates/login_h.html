@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="du_login" method="post">
+    <h2><img src="https://yastatic.net/s3/lyceum/content/images/second-year/web/MARS-2-7.png"
+    alt="Иллюстрация" class="mars">  Аварийный доступ</h2>
+    <input type="text" class="form-control" id="id_1"  placeholder="id астронавта" name="id_1">
+    <br/>
+    <input type="password" class="form-control" id="password_1"  placeholder="password астронавта" name="password_1">
+    <br/>
+    <input type="text" class="form-control" id="id_2"  placeholder="id Капитана" name="id_2">
+    <br/>
+    <input type="password" class="form-control" id="password_2"  placeholder="password Капитана" name="password_2">
+    <button type="reset" class="btn btn-primary">Отправить</button>
+</form>
+
+{% endblock %}
