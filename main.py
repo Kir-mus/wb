@@ -12,14 +12,13 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-db_session.global_init("db/jo.sqlite")
 db_session.global_init("db/blogs.sqlite")
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 
 class RegisterForm(FlaskForm):
-    email = EmailField('Login/email', validators=[DataRequired()])
+    email = EmailField('email', validators=[DataRequired()])
     password_1 = PasswordField('пароль', validators=[DataRequired()])
     password_2 = PasswordField('еще раз', validators=[DataRequired()])
     surname = StringField('surname', validators=[DataRequired()])
@@ -52,15 +51,15 @@ def reqister():
                                    form=form,
                                    message="Такой пользователь уже есть")
         user = User(
+            email=form.email.data,
             surname=form.surname.data,
             name=form.name.data,
             position=form.pos.data,
             speciality=form.spes.data,
             address=form.address.data,
-            email=form.email.data,
-            age=form.age.data,
+            age=form.age.data
         )
-        user.set_password(form.password.data)
+        user.set_password(form.password_1.data)
         session.add(user)
         session.commit()
     return render_template('register.html', title='Регистрация', form=form)
