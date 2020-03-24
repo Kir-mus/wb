@@ -24,8 +24,9 @@ IMG.mars {
 }
 
 form.du_login{
-    max-width: 450px;
-    color-text: #b0b7c6;
+    max-width: 650px;
+    max-height: 1040px;
+    color-text: #b0b00;
     border: 1px solid gray;
     border-radius: 2px;
     padding: 2px;
