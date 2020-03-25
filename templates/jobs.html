@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Регистрация</h1>
+<form action="" method="post" class="du_login">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.id_lead.label }}<br>
+        {{ form.id_lead(class="form-control") }}<br>
+        {% for error in form.id_lead.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.job.label }}<br>
+        {{ form.job(class="form-control") }}<br>
+        {% for error in form.job.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.w_size.label }}<br>
+        {{ form.w_size(class="form-control") }}<br>
+        {% for error in form.w_size.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.coll.label }}<br>
+        {{ form.coll(class="form-control") }}<br>
+        {% for error in form.coll.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.finished.label }}<br>
+        {{ form.finished(class="form-control") }}<br>
+        {% for error in form.finished.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary")}}</p>
+    {{message}}
+</form>
+{% endblock %}

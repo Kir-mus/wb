@@ -87,6 +87,6 @@
         {% endfor %}
     </p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-    {{message}}
+    {% if message != None %}<div class="alert alert-danger" role="alert">{{ message }}</div>{% endif %}
 </form>
 {% endblock %}
