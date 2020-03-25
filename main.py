@@ -12,7 +12,7 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-db_session.global_init("db/blogs.sqlite")
+db_session.global_init("db/jo.sqlite")
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -35,6 +35,20 @@ class LoginForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
+
+
+class AddjobsForm(FlaskForm):
+    job = StringField('Job title', validators=[DataRequired()])
+    id_lead = IntegerField('Team leader id', validators=[DataRequired()])
+    w_size = IntegerField('Work size', validators=[DataRequired()])
+    coll = StringField('Collaborators', validators=[DataRequired()])
+    finished = BooleanField('is job finished')
+    submit = SubmitField('Add')
+
+
+@app.route('/', methods=['GET', 'POST'])
+def g():
+    return render_template('base.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -62,7 +76,26 @@ def reqister():
         user.set_password(form.password_1.data)
         session.add(user)
         session.commit()
-    return render_template('register.html', title='Регистрация', form=form)
+        return redirect('/login')
+    return render_template('register.html', title='Регистрация', form=form, message=None)
+
+
+@app.route('/add_job', methods=['GET', 'POST'])
+def add_job():
+    form = AddjobsForm()
+    if form.validate_on_submit():
+        session = db_session.create_session()
+        job = Jobs(
+            team_leader=form.id_lead.data,
+            job=form.job.data,
+            work_size=form.w_size.data,
+            collaborators=form.coll.data,
+            is_finished=form.finished.data
+        )
+        session.add(job)
+        session.commit()
+        return redirect('/works')
+    return render_template('jobs.html', title='Создание работы', form=form)
 
 
 @login_manager.user_loader
@@ -73,24 +106,25 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logout_user()
     form = LoginForm()
     if form.validate_on_submit():
         session = db_session.create_session()
         user = session.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/")
+            return redirect("/works")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+    return render_template('login.html', title='Авторизация', form=form, message=None)
 
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("https://yandex.ru/")
 
 
 @app.route('/works')
