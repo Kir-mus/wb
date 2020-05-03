@@ -4,6 +4,12 @@
 <h2>Works log</h2>
 {% for log in jobsid %}
 <h3>Action {{log}}</h3>
+{% if current_user.is_authenticated and jobsid[log][5] == current_user %}
+    <div>
+        <a href="/add_job/{{ log }}" class="btn btn-warning">Изменить</a>
+        <a href="/jobs_delete/{{ log }}" class="btn btn-danger">Удалить</a>
+    </div>
+{% endif %}
 <table width="500" border="5">
       <tr bgcolor="gray">
         <th>title</th><th>lid</th><th>dur</th><th>list</th><th>is fin</th>
