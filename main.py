@@ -11,7 +11,7 @@ from datetime import date
 from data import db_session
 from data.jobs import Jobs
 from data.users import User
-from sqlalhimi.data import users_resource
+from sqlalhimi.data import users_resource, jobs_resource
 import jobs_api
 
 
@@ -23,9 +23,10 @@ login_manager.init_app(app)
 api = Api(app)
 # для списка объектов
 api.add_resource(users_resource.UsersListResource, '/api/v2/users')
-
+api.add_resource(jobs_resource.JobsListResource, '/api/v2/jobs')
 # для одного объекта
 api.add_resource(users_resource.UsersResource, '/api/v2/users/<int:news_id>')
+api.add_resource(jobs_resource.JobsResource, '/api/v2/jobs/<int:news_id>')
 
 
 class RegisterForm(FlaskForm):
